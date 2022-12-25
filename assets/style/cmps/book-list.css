@@ -1,0 +1,19 @@
+.book-table {
+    background-color: lightsalmon;
+}
+
+.book {
+    /* margin-top: 10px; */
+    text-align: center;
+    background-color: lightblue;
+    width: max-content;
+    /* height: max-content; */
+}
+
+.book td {
+    padding: 0 10px;
+}
+
+.book img {
+    width: 30px;
+}
