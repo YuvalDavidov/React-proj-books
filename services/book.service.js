@@ -4,10 +4,30 @@ import { asyncStorageService } from './async-storage.service.js'
 export const bookService = {
     getBooks,
     getBookById,
-    getDefaultFilter
+    getDefaultFilter,
+    getCurrencySymbol
 }
 const BOOKS_KEY = 'booksDB'
 _createBooks()
+
+function getCurrencySymbol(currencyCode) {
+
+    let symbol
+    switch (currencyCode) {
+        case 'EUR':
+            symbol = '€'
+            break;
+
+        case 'ILS':
+            symbol = '₪'
+            break;
+
+        case 'USD':
+            symbol = '$'
+            break;
+    }
+    return symbol
+}
 
 function getDefaultFilter() {
     return { txt: '', price: '' }

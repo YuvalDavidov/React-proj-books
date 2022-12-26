@@ -1,4 +1,4 @@
-
+import { bookService } from "../services/book.service.js"
 
 export function BookPre({ book, onSelectedBook }) {
 
@@ -7,7 +7,7 @@ export function BookPre({ book, onSelectedBook }) {
         <td>{book.id}</td>
         <td>{book.title}</td>
         <td><img src={book.thumbnail} /></td>
-        <td>{book.listPrice.amount} {book.listPrice.currencyCode}</td>
+        <td>{book.listPrice.amount}{bookService.getCurrencySymbol(book.listPrice.currencyCode)}</td>
 
     </tr>
 }

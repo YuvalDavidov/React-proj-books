@@ -1,5 +1,10 @@
 .book-table {
-    background-color: lightsalmon;
+    background-color: rgb(253, 119, 66);
+    margin: 0 auto;
+}
+
+thead {
+    text-align: center;
 }
 
 .book {
