@@ -3,6 +3,7 @@ const Router = ReactRouterDOM.HashRouter
 const { Route, Routes } = ReactRouterDOM
 
 import { AppHeader } from './cmps/app-header.jsx'
+import { UserMsg } from './cmps/user-msg.jsx'
 import { HomePage } from './pages/home-page.jsx'
 import { AboutUs } from './pages/about.jsx'
 import { BookIndex } from './pages/book-index.jsx'
@@ -31,6 +32,8 @@ export function App() {
 
                 </Routes>
             </main>
+
+            <UserMsg />
         </section>
     </Router>
 }

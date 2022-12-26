@@ -6,6 +6,7 @@ import { BookDetails } from './book-details.jsx'
 import { BooksFilter } from '../cmps/book-filter.jsx'
 
 import { bookService } from '../services/book.service.js'
+import { eventBusService, showSuccessMsg } from '../services/event-bus.service.js'
 
 export function BookIndex() {
 
@@ -24,9 +25,6 @@ export function BookIndex() {
         })
     }
 
-    function onSelectedBook(bookId) {
-        bookService.getBookById(bookId).then(book => setSelectedBook(book))
-    }
 
     function onSetFilter(filterByFormFilter) {
         setFilterBy(filterByFormFilter)
@@ -36,12 +34,22 @@ export function BookIndex() {
         navugate('/books/edit')
     }
 
+    function onRemove(bookId) {
+        bookService.remove(bookId)
+            .then(() => {
+                bookService.getBooks()
+                    .then((updatedBooks) => setBooks(updatedBooks))
+                showSuccessMsg('Book removed!')
+            })
+    }
+
+
     return <section>
         <h2>Our Books</h2>
         {!selectedBook && <div>
             <BooksFilter onSetFilter={onSetFilter} />
             <button onClick={onAddBook}>add book</button>
-            <BooksList books={books} onSelectedBook={onSelectedBook} />
+            <BooksList books={books} onRemove={onRemove} />
         </div>}
         {selectedBook && <BookDetails book={selectedBook} onBack={() => setSelectedBook(null)} />}
     </section>

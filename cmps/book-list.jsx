@@ -1,6 +1,6 @@
 import { BookPre } from '../cmps/book-pre.jsx'
 
-export function BooksList({ books, onSelectedBook }) {
+export function BooksList({ books, onRemove }) {
 
 
     return <table className="book-table">
@@ -15,7 +15,7 @@ export function BooksList({ books, onSelectedBook }) {
         <tbody>
 
             {
-                books.map(book => <BookPre book={book} key={book.id} onSelectedBook={onSelectedBook} />)
+                books.map(book => <BookPre book={book} key={book.id} onRemove={onRemove} />)
             }
         </tbody>
     </table>

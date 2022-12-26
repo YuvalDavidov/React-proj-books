@@ -7,7 +7,8 @@ export const bookService = {
     getDefaultFilter,
     getCurrencySymbol,
     getEmptyBook,
-    save
+    save,
+    remove
 }
 const BOOKS_KEY = 'booksDB'
 _createBooks()
@@ -53,8 +54,21 @@ function getBooks(filterBy = getDefaultFilter()) {
         })
 }
 
-function getEmptyBook(title = '', authors = '', publishedDate = 2000, pageCount = 200, thumbnail = '') {
-    return { id: '', title, authors, publishedDate, pageCount, description: utilService.makeLorem(), thumbnail, listPrice: { amount: 0, currencyCode: 'EUR', isOnSale: true } }
+function getEmptyBook(title = '', authors = '', publishedDate = 2000, pageCount = 200, thumbnail = "http://coding-academy.org/books-photos/20.jpg") {
+    return {
+        id: '',
+        title,
+        authors,
+        publishedDate,
+        pageCount,
+        description: utilService.makeLorem(),
+        thumbnail,
+        listPrice: {
+            amount: 0,
+            currencyCode: 'EUR',
+            isOnSale: true
+        }
+    }
 }
 
 function save(car) {
@@ -63,6 +77,10 @@ function save(car) {
     } else {
         return asyncStorageService.post(BOOKS_KEY, car)
     }
+}
+
+function remove(bookId) {
+    return asyncStorageService.remove(BOOKS_KEY, bookId)
 }
 
 function _createBooks() {
