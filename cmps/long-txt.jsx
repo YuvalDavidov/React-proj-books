@@ -11,6 +11,21 @@ export function LongTxt({ txt, length }) {
         setIsLongTxtShown((preLongTxtShown) => !preLongTxtShown)
     }
 
+
+    function txtDisplay() {
+        let classes = ''
+        let currYear = new Date().getFullYear()
+
+        if (book.pageCount > 500) classes += ' serious'
+        else if (book.pageCount > 200) classes += ' descent'
+        else if (book.pageCount < 100) classes += ' light'
+
+        if (book.publishedDate < currYear - 10) classes += ' vintage'
+
+        console.log(classes);
+        return classes
+    }
+
     return <div className="txt" key="txt">
         <p>{getTxtToShow(isLongTxtShown, txt, length)}</p>
         {txt.length > length && <button onClick={onToggleLongTxt}>{!isLongTxtShown ? 'more' : 'less'}</button>}

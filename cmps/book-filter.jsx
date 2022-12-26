@@ -13,9 +13,7 @@ export function BooksFilter({ onSetFilter }) {
     function handleChange({ target }) {
         let { value, name: field, type } = target
         value = (type === 'number') ? +value : value
-        setFilterByToEdit((prevFilter) => {
-            return { ...prevFilter, [field]: value }
-        })
+        setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
     }
 
     function onSubmitFilter(ev) {

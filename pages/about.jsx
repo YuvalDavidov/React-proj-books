@@ -1,5 +1,4 @@
 
-
 export function AboutUs() {
 
     return <section>
