@@ -2,8 +2,9 @@ const { useParams, useNavigate } = ReactRouterDOM
 const { useState, useEffect } = React
 
 import { bookService } from "../services/book.service.js"
-
+import { BookReviews } from '../cmps/book-reviews.jsx'
 import { LongTxt } from "../cmps/long-txt.jsx"
+import { AddReview } from "../cmps/add-review.jsx"
 
 export function BookDetails() {
     const [book, setBook] = useState(null)
@@ -35,6 +36,19 @@ export function BookDetails() {
         navigate(`/books/edit/${book.id}`)
     }
 
+    function onSaveReview(bookToSave) {
+        console.log(bookToSave);
+        setBook(bookToSave)
+        bookService.save(book)
+    }
+
+    function onRemoveRev(revId) {
+        bookService.removeRev(book.id, revId).then(() => {
+            const filteredReviews = book.reviews.filter((review) => review.id !== revId)
+            setBook({ ...book, reviews: filteredReviews })
+        })
+    }
+
     return <article className="book-details">
         <h2>{book.title}</h2>
         <button onClick={onEdit}>Edit me</button>
@@ -44,6 +58,9 @@ export function BookDetails() {
         <img src={book.thumbnail} />
         <div>{book.authors}</div>
         <LongTxt txt={book.description} length={100} />
+        <AddReview book={book} onSaveReview={onSaveReview} />
         <button onClick={onGoBack}>Back to book-list</button>
+
+        <BookReviews book={book} onRemoveRev={onRemoveRev} />
     </article>
 }

@@ -54,7 +54,7 @@ export function BookEdit() {
         <h2>{bookToEdit.id ? 'Edit this book' : 'Add a new book'}</h2>
 
         <form onSubmit={onSaveBook}>
-            <label htmlFor="">Book name: </label>
+            <label htmlFor="title">Book name: </label>
             <input type="text"
                 name="title"
                 id="title"
@@ -63,7 +63,7 @@ export function BookEdit() {
                 onChange={handleChange}
             />
 
-            <label htmlFor="">Book price: </label>
+            <label htmlFor="amount">Book price: </label>
             <input type="number"
                 name="amount"
                 id="amount"

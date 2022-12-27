@@ -8,10 +8,20 @@ export const bookService = {
     getCurrencySymbol,
     getEmptyBook,
     save,
-    remove
+    remove,
+    removeRev
 }
 const BOOKS_KEY = 'booksDB'
 _createBooks()
+
+function removeRev(bookId, reviewId) {
+    let books = utilService.loadFromStorage(BOOKS_KEY)
+    let book = books.find((book) => book.id === bookId)
+    const newReviews = book.reviews.filter((review) => review.id !== reviewId)
+    book.reviews = newReviews
+    utilService.saveToStorage(BOOKS_KEY, books)
+    return Promise.resolve()
+}
 
 function getCurrencySymbol(currencyCode) {
 
@@ -71,11 +81,11 @@ function getEmptyBook(title = '', authors = '', publishedDate = 2000, pageCount 
     }
 }
 
-function save(car) {
-    if (car.id) {
-        return asyncStorageService.put(BOOKS_KEY, car)
+function save(book) {
+    if (book.id) {
+        return asyncStorageService.put(BOOKS_KEY, book)
     } else {
-        return asyncStorageService.post(BOOKS_KEY, car)
+        return asyncStorageService.post(BOOKS_KEY, book)
     }
 }
 

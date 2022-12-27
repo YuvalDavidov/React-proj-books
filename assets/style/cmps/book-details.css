@@ -32,3 +32,17 @@
 .green {
     color: greenyellow;
 }
+
+.book-reviews {
+    display: flex;
+    flex-direction: column;
+}
+
+.book-reviews div {
+    display: flex;
+}
+
+.book-reviews h4 {
+    font-size: .9rem;
+    width: 50%;
+}

@@ -2,8 +2,8 @@ const { useState, useEffect } = React
 const { useNavigate } = ReactRouterDOM
 
 import { BooksList } from '../cmps/book-list.jsx'
-import { BookDetails } from './book-details.jsx'
 import { BooksFilter } from '../cmps/book-filter.jsx'
+import { BookDetails } from './book-details.jsx'
 
 import { bookService } from '../services/book.service.js'
 import { eventBusService, showSuccessMsg } from '../services/event-bus.service.js'
@@ -51,6 +51,5 @@ export function BookIndex() {
             <button onClick={onAddBook}>add book</button>
             <BooksList books={books} onRemove={onRemove} />
         </div>}
-        {selectedBook && <BookDetails book={selectedBook} onBack={() => setSelectedBook(null)} />}
     </section>
 }
